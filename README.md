@@ -1,8 +1,8 @@
-**# Param-Inject**
+# Param-Inject
 
 使用依赖注入提供请求参数注入功能
 
-**# Start**
+# Start
 
 1. 添加服务(支持tp和laravel)
 
@@ -18,7 +18,7 @@
    use Cxx\ParamInject\Param;
    
    /**
-    * 分页参数类(所有参数类都需要继承 Cxx\ParamInject\Param )
+    * 分页参数类(所有参数类都需要继承 Cxx\ParamInject\Param)
     */
    class Page extends Param
    {
@@ -65,4 +65,27 @@
     ```
 
    使用方式在`Thinkphp`、`Laravel`中一致
+
+# 类型注释集合
+
+## 基础类型
+
+| 示例                      | 备注                     |
+| ------------------------- | ------------------------ |
+| @var int 或 @var integer  | 整形                     |
+| @var string               | 字符串                   |
+| @var bool 或 @var boolean | 布尔类型                 |
+| @var float 或 @var double | 浮点型                   |
+| @var mixed                | 此类型不会对数据进行转换 |
+
+以上类型支持数组形式 如`@var int[]`  `@var int[][]` 
+
+## 复合类型
+
+| 示例        | 备注                                              |
+| ----------- | ------------------------------------------------- |
+| @var Page   | 对象类型，Page是继承`Cxx\ParamInject\Param`的对象 |
+| @var Page[] | 对象数组类型                                      |
+
+对象类型里面的属性可以是基础类型还可以是复合类型
 
