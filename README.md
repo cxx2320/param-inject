@@ -1,1 +1,68 @@
-# param-inject
+**# Param-Inject**
+
+使用依赖注入提供请求参数注入功能
+
+**# Start**
+
+1. 添加服务(支持tp和laravel)
+
+   服务使用方式请查看官方文档([Thinkphp](https://www.kancloud.cn/manual/thinkphp6_0/1037490), [Laravel](https://learnku.com/docs/laravel/8.x/providers/9362))
+
+   Thinkphp：`Cxx\ParamInject\ThinkParamService`
+
+   Laravel：`Cxx\ParamInject\LaravelParamService`
+
+2. 创建参数类（命名空间随意，只要能被加载）
+
+   ```php
+   use Cxx\ParamInject\Param;
+   
+   /**
+    * 分页参数类(所有参数类都需要继承 Cxx\ParamInject\Param )
+    */
+   class Page extends Param
+   {
+       // 属性访问性必须是 public
+       /**
+        * @var int
+        */
+       public $page = 1;
+   
+       // 注释规则必须要有 @var 后面跟属性类型
+       /**
+        * @var int
+        */
+       public $limit = 10;
+       
+       // 也可以写在行内
+       /** @var int */
+       public $limit = 10;
+       
+       // 不带默认值，均为 null
+       /** @var int */
+       public $limit;
+   }
+   ```
+
+3. 使用
+
+   控制器中
+
+   ```php
+   public function index(Page $page)
+   {
+       dd($page);
+   }
+   
+   ```
+
+   在路由闭包中也类似
+
+    ```php
+   Route::post('/test', function (Page $page) {
+       dd($page);
+   });
+    ```
+
+   使用方式在`Thinkphp`、`Laravel`中一致
+

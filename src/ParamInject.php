@@ -6,9 +6,10 @@ namespace Cxx\ParamInject;
 
 use ReflectionProperty;
 use phpDocumentor\Reflection\Types\Array_;
+use phpDocumentor\Reflection\Types\Mixed_;
+use Cxx\ParamInject\Param as ParamAbstract;
 use phpDocumentor\Reflection\Types\Object_;
 use Roave\BetterReflection\BetterReflection;
-use Cxx\ParamInject\Param as ParamAbstract;
 
 class ParamInject
 {
@@ -41,8 +42,17 @@ class ParamInject
      * @param mixed &$value
      * @param mixed $defaultValue
      */
-    public function typeCast($typeClass, &$value, $defaultValue): bool
+    public function typeCast($typeClass, &$value, $defaultValue = null): bool
     {
+        if($typeClass === ''){
+            return true;
+        }
+
+        // 任意类型
+        if($typeClass instanceof Mixed_){
+            return true;
+        }
+
         $type = $typeClass->__toString();
         $scalarMap = [
             'int' => 'int',
