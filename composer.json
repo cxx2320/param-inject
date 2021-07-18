@@ -1,0 +1,20 @@
+{
+    "name": "cxx/parameter-inject",
+    "description": "parameter-inject",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "cxx",
+            "email": "cxx2320@foxmail.com"
+        }
+    ],
+    "require": {
+        "roave/better-reflection": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+           "Cxx\\ParamInject\\": "src/"
+        }
+    }
+}
