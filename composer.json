@@ -1,6 +1,6 @@
 {
-    "name": "cxx/parameter-inject",
-    "description": "parameter-inject",
+    "name": "cxx/param-inject",
+    "description": "param-inject",
     "type": "library",
     "license": "MIT",
     "authors": [
