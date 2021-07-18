@@ -2,6 +2,10 @@
 
 使用依赖注入提供请求参数注入功能
 
+# install
+
+`composer require cxx/param-inject`
+
 # Start
 
 1. 添加服务(支持tp和laravel)
