@@ -2,7 +2,11 @@
 
 使用依赖注入提供请求参数注入功能
 
-# install
+# Install
+
+Thinkphp >= 6.0
+
+Laravel >= 5.0
 
 `composer require cxx/param-inject`
 
