@@ -11,6 +11,8 @@ use ArrayAccess;
  */
 abstract class Param implements ArrayAccess
 {
+    protected static $inject;
+
     public function toArray(): array
     {
         return json_decode($this->toJson(), true);
@@ -41,5 +43,24 @@ abstract class Param implements ArrayAccess
     public function offsetGet($offset)
     {
         return property_exists($this, $offset) ? $this->{$offset} : null;
+    }
+
+    /**
+     * @param array $params
+     * @return static
+     */
+    public static function newInstance(array $params = [])
+    {
+        $instance = new static();
+        if (self::$inject) {
+            return (self::$inject)->injectParam($instance, $params);
+        }
+        if (function_exists('app')) {
+            $inject = app(ParamInject::class);
+        } else {
+            $inject = new ParamInject();
+        }
+        self::$inject = $inject;
+        return $inject->injectParam($instance, $params);
     }
 }
