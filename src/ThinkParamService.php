@@ -17,7 +17,7 @@ class ThinkParamService extends Service
     /**
      * 启动应用服务。
      *
-     * @return voidF
+     * @return void
      */
     public function boot(ParamInject $inject)
     {
