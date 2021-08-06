@@ -76,6 +76,8 @@ Laravel >= 5.0
 
 # 类型注释集合
 
+> 注意：有时在类型转换时会发生和预期的结果不一致的情况，详见[类型转换的判别](https://www.php.net/manual/zh/language.types.type-juggling.php)
+
 ## 基础类型
 
 | 示例                      | 备注                     |
