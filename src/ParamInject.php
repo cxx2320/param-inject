@@ -13,6 +13,20 @@ use Roave\BetterReflection\BetterReflection;
 
 class ParamInject
 {
+
+    /**
+     * @var BetterReflection
+     */
+    private $reflection;
+
+    /**
+     * @param BetterReflection $reflection
+     */
+    public function __construct(BetterReflection $reflection)
+    {
+        $this->reflection = $reflection;
+    }
+
     /**
      * 注入参数
      * @param ParamAbstract $instance
@@ -20,10 +34,10 @@ class ParamInject
      */
     public function injectParam($instance, $param)
     {
-        $reflection = (new BetterReflection())
+        $reflectionClass = $this->reflection
             ->classReflector()
             ->reflect(get_class($instance));
-        $propertyList = $reflection->getProperties(ReflectionProperty::IS_PUBLIC);
+        $propertyList = $reflectionClass->getProperties(ReflectionProperty::IS_PUBLIC);
         foreach ($propertyList as $property) {
             if (!isset($param[$property->getName()])) {
                 continue;
@@ -44,12 +58,12 @@ class ParamInject
      */
     public function typeCast($typeClass, &$value, $defaultValue = null): bool
     {
-        if($typeClass === ''){
+        if ($typeClass === '') {
             return true;
         }
 
         // 任意类型
-        if($typeClass instanceof Mixed_){
+        if ($typeClass instanceof Mixed_) {
             return true;
         }
 
@@ -85,10 +99,9 @@ class ParamInject
             }
             $instance = new $className;
             if ($instance instanceof ParamAbstract) {
-                $value = $this->injectParam($instance, $value);
-            } else {
-                $value = $instance;
+                $this->injectParam($instance, $value);
             }
+            $value = $instance;
             return true;
         }
 

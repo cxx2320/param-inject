@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Cxx\ParamInject;
 
 use ArrayAccess;
+use Roave\BetterReflection\BetterReflection;
 
 /**
  * 参数注入类
  */
 abstract class Param implements ArrayAccess
 {
+    /** @var ParamInject */
     protected static $inject;
 
     public function toArray(): array
@@ -56,9 +58,10 @@ abstract class Param implements ArrayAccess
             return (self::$inject)->injectParam($instance, $params);
         }
         if (function_exists('app')) {
+            /** @var ParamInject */
             $inject = app(ParamInject::class);
         } else {
-            $inject = new ParamInject();
+            $inject = new ParamInject(new BetterReflection());
         }
         self::$inject = $inject;
         return $inject->injectParam($instance, $params);
