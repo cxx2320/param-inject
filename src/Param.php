@@ -27,9 +27,7 @@ abstract class Param implements ArrayAccess
 
     public function offsetSet($offset, $value)
     {
-        if (property_exists($this, $offset)) {
-            $this->{$offset} = $value;
-        }
+        $this->{$offset} = $value;
     }
 
     public function offsetExists($offset)
