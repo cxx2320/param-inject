@@ -26,9 +26,9 @@ Laravel >= 5.0
    use Cxx\ParamInject\Param;
    
    /**
-    * 分页参数类(所有参数类都需要继承 Cxx\ParamInject\Param)
+    * 参数类(所有参数类都需要继承 Cxx\ParamInject\Param)
     */
-   class Page extends Param
+   class Test extends Param
    {
        // 属性访问性必须是 public
        /**
@@ -57,9 +57,9 @@ Laravel >= 5.0
    控制器中
 
    ```php
-   public function index(Page $page)
+   public function index(Test $test)
    {
-       dd($page);
+       dd($test);
    }
    
    ```
@@ -67,8 +67,8 @@ Laravel >= 5.0
    在路由闭包中也类似
 
     ```php
-   Route::post('/test', function (Page $page) {
-       dd($page);
+   Route::post('/test', function (Test $page) {
+       dd($test);
    });
     ```
 
