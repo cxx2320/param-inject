@@ -1,6 +1,6 @@
 # Param-Inject
 
-使用依赖注入提供请求参数注入功能
+使用依赖注入提供请求参数注入功能，可更直观的处理客户端数据
 
 # Install
 
@@ -57,6 +57,7 @@ Laravel >= 5.0
    控制器中
 
    ```php
+   // 注意方法参数类型
    public function index(Test $test)
    {
        dd($test);
@@ -67,7 +68,8 @@ Laravel >= 5.0
    在路由闭包中也类似
 
     ```php
-   Route::post('/test', function (Test $page) {
+   // 注意匿名函数参数类型
+   Route::post('/test', function (Test $test) {
        dd($test);
    });
     ```
