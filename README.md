@@ -96,8 +96,8 @@ Laravel >= 5.0
 
 | 示例        | 备注                                              |
 | ----------- | ------------------------------------------------- |
-| @var Page   | 对象类型，Page是继承`Cxx\ParamInject\Param`的对象 |
-| @var Page[] | 对象数组类型                                      |
+| @var Test   | 对象类型，Test是继承`Cxx\ParamInject\Param`的对象 |
+| @var Test[] | 对象数组类型                                      |
 
 对象类型里面的属性可以是基础类型还可以是复合类型
 
